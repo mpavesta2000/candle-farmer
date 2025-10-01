@@ -6,14 +6,16 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
+        // ONE-TIME: Fetch historical data
+        HistoricalDataFetcher fetcher = new HistoricalDataFetcher();
+        fetcher.fetchHistoricalData(4); // Get last 4 years
 
+        // THEN: Start your live data collection
         BinanceChart binanceChart = new BinanceChart();
-
         ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-
         scheduler.scheduleAtFixedRate(() -> {
-            System.out.println("Fetching BTCUSDT candles...");
+            System.out.println("Fetching latest BTCUSDT candle...");
             binanceChart.btcUsdt();
-        }, 0, 5, TimeUnit.HOURS);
+        }, 0, 1, TimeUnit.HOURS);
     }
 }
