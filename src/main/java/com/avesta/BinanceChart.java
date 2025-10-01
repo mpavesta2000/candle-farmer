@@ -18,7 +18,7 @@ public class BinanceChart {
     private final String dbPassword = "";
 
     public void btcUsdt() {
-        String counter = "10";
+        String counter = "1000";
         try {
             HttpResponse<String> response = Unirest.get(
                             "https://api.binance.com/api/v3/klines?symbol=BTCUSDT&interval=6h&limit="+counter)
